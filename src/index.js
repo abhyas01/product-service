@@ -35,6 +35,12 @@ index.get("/products", async (req, res) => {
 index.get("/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
+    // validate id is a number to prevent DB crash
+    if (isNaN(id) || !Number.isInteger(Number(id))) {
+      return res.status(400).json({ error: "Invalid product ID" });
+    }
+
     const result = await pool.query("SELECT * FROM products WHERE id = $1", [
       id,
     ]);
