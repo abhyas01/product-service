@@ -9,7 +9,7 @@ describe("Product Service", () => {
     expect(product.price).toBeGreaterThan(0);
   });
 
-  test("should reject empty product name", () => {
+  test("should reject an empty product name", () => {
     const product = { name: "", price: 999.99 };
     expect(product.name.trim()).toBe("");
   });
