@@ -52,9 +52,18 @@ index.get("/products/:id", async (req, res) => {
 index.post("/products", async (req, res) => {
   try {
     const { name, price, description } = req.body;
+
+    // Input validation
+    if (!name || typeof name !== "string" || name.trim() === "") {
+      return res.status(400).json({ error: "Product name is required" });
+    }
+    if (!price || isNaN(price) || Number(price) <= 0) {
+      return res.status(400).json({ error: "Price must be a positive number" });
+    }
+
     const result = await pool.query(
       "INSERT INTO products (name, price, description) VALUES ($1, $2, $3) RETURNING *",
-      [name, price, description],
+      [name.trim(), Number(price), description || ""],
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
