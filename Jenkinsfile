@@ -29,6 +29,12 @@ pipeline {
       }
     }
 
+    stage('Lint') {
+     steps {
+        dir('src') { sh 'npm run lint' }
+      }
+    }
+    
     stage('Unit Test') {
       steps {
         dir('src') { sh 'npm run test:unit' }
