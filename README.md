@@ -59,6 +59,7 @@ npm test
 ## Docker
 
 ```bash
+
 docker build -t abhyas01/product-service .
 docker run -p 3001:3001 abhyas01/product-service
 ```
