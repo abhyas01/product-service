@@ -78,7 +78,7 @@ pipeline {
         dir('src') {
           sh '''
             DB_HOST=localhost \
-            DB_PORT=5433 \
+            DB_PORT=15433 \
             DB_NAME=ecommerce \
             DB_USER=postgres \
             DB_PASSWORD=password \
